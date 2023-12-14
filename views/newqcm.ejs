@@ -1,0 +1,48 @@
+<%- include('header') -%>
+
+<form action="/qcms/new" method="POST">
+    <div>
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name">
+    </div>
+    <div>
+        <label for="subject">Sujet</label>
+        <input type="text" id="subject" name="subject">
+    </div>
+    <div>
+        <label for="nbpoints">Nb points</label>
+        <input type="number" id="nbpoints" name="nbpoints">
+    </div>
+
+    <div id="question-container">
+        <!-- Les questions seront ajoutées ici -->
+    </div>
+
+    <button type="button" onclick="addQuestion()">Ajouter Question</button>
+    <input type="submit" value="Create">
+</form>
+
+<script>
+function addQuestion() {
+    const container = document.getElementById('question-container');
+    const questionDiv = document.createElement('div');
+
+    questionDiv.innerHTML = `
+        <div>
+            <label>Question</label>
+            <input type="text" name="questionText[]">
+        </div>
+        <div>
+            <label>Choix (séparés par des virgules)</label>
+            <input type="text" name="choices[]">
+        </div>
+        <div>
+            <label>Réponse Correcte</label>
+            <input type="text" name="correctAnswer[]">
+        </div>
+    `;
+    container.appendChild(questionDiv);
+}
+</script>
+
+<%- include('footer') -%>

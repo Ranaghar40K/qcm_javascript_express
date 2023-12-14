@@ -1,0 +1,25 @@
+<% qcms.forEach(qcm => { %>
+    <div>
+        <h2><%= qcm.name %></h2>
+        <p>Sujet: <%= qcm.subject %></p>
+        <p>Nombre de points: <%= qcm.nbpoints %></p>
+        
+        <h3>Questions</h3>
+        <% qcm.questions.forEach(question => { %>
+            <div>
+                <p><%= question.text %></p>
+                <ul>
+                    <% question.choices.forEach(choice => { %>
+                        <li><%= choice %></li>
+                    <% }); %>
+                </ul>
+                <form action="/qcms/submit-answer" method="POST">
+                    <input type="hidden" name="qcmId" value="<%= qcm.id %>">
+                    <input type="hidden" name="questionId" value="<%= question.id %>">
+                    <input type="text" name="answer" placeholder="Votre réponse">
+                    <button type="submit">Répondre</button>
+                </form>
+            </div>
+        <% }); %>
+    </div>
+<% }); %>

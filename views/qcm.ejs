@@ -1,0 +1,33 @@
+<%- include('header') -%>
+
+<div>
+    <strong>Nom:</strong> <%= qcm.name %>
+</div>
+
+<div>
+    <strong>Sujet:</strong> <%= qcm.subject %>
+</div>
+
+<div>
+    <strong>Nombre de Points:</strong> <%= qcm.nbpoints %>
+</div>
+
+<div>
+    <strong>Auteur:</strong> <%= qcm.author %>
+</div>
+
+<div>
+    <h3>Questions</h3>
+    <% qcm.questions.forEach(function(question, index) { %>
+        <div>
+            <strong>Question <%= index + 1 %> :</strong> <%= question.text %>
+        </div>
+        <ul>
+            <% question.choices.forEach(function(choice) { %>
+                <li><%= choice %></li>
+            <% }); %>
+        </ul>
+    <% }); %>
+</div>
+
+<%- include('footer') -%>
